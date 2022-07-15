@@ -1,20 +1,14 @@
 import express from 'express'
+import controllerTarefa from './controllers/tarefa-controller.js'
+import usuarioController from './controllers/usuario-controller.js'
 
 const app = express()
 const port = 3000
 
-app.get('/usuarios', (req, res) => {
-    res.send('Rota ativada com GET e recurso usuarios: valores de usuarios devem ser retornados')
-})
-app.get('/tarefas', (req, res) => {
-    res.send('Rota ativada com GET e recurso tarefas: valores de tarefas devem ser retornados')
-})
+usuarioController(app)
+controllerTarefa(app)
 
 app.listen(port, () => {
-    console.log(`http://localhost:${port}/usuarios`)
-    console.log(`http://localhost:${port}/tarefas`)
+    console.log(`http://localhost:${port}/usuario`)
+    console.log(`http://localhost:${port}/tarefa`)
 })
-
-export (app) => {
-    
-}

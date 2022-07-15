@@ -1,6 +1,12 @@
 {
+  "scripts": {
+    "start": "nodemon ./src/todo-app-api.js"
+  },
   "dependencies": {
     "express": "^4.18.1"
   },
-  "type":"module"
+  "type": "module",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
 }
