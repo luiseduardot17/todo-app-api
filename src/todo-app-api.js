@@ -3,6 +3,7 @@ import controllerTarefa from './controllers/tarefa-controller.js'
 import usuarioController from './controllers/usuario-controller.js'
 
 const app = express()
+app.use(express.json());
 const port = 3000
 
 usuarioController(app)
