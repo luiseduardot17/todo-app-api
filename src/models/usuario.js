@@ -1,23 +1,20 @@
 import bd from '../database/bd.js'
 
-let id = 0
-class Usuario {
-    constructor(nome, email, senha){
-        this.id = id++
-        this.nome = nome,
-        this.email = email,
-        this.senha = senha
+export default class UsuarioModel {
+
+    // metodo para insercao do usuario no banco de dados
+    insereUsuario = (usuario) => {
+        bd.usuario.push(usuario)
     }
 
-    insereUsuario = (usuario)=>{
-        console.log(bd.usuario);
-        bd.usuario.push(this)
-        console.log(bd.usuario);
-    }
-
-    pegaUsuarios = ()=>{
+    // metodo para pegar todos usuarios do banco de dados
+    pegaUsuarios = () => {
         return bd.usuario
     }
-}
 
-export default Usuario
+    pegaUmUsuario = (email) => {
+        // usaria a informaçao para fazer uma query
+        return bd.usuario.filter(usuario => usuario.email === email)
+    }
+
+}

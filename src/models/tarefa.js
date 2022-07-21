@@ -1,10 +1,20 @@
-class Tarefa {
-    constructor(titulo, descricao, status, dataDeCriacao) {
-        this.titulo = titulo,
-        this.descricao = descricao,
-        this.status = status,
-        this.dataDeCriacao = dataDeCriacao
-    }
-} 
+import bd from '../database/bd.js'
 
-export default Tarefa
+export default class TarefaModel {
+
+    // metodo para insercao da tarefa no banco de dados
+    insereTarefa = (tarefa) => {
+        bd.tarefa.push(tarefa)
+    }
+
+    // metodo para pegar todas tarefas do banco de dados
+    pegaTarefas = () => {
+        return bd.tarefa
+    }
+
+    // metodo para pegar uma tarefa do banco de dados
+    pegaUmaTarefa = (titulo) => {
+        return bd.tarefa.filter(tarefa => tarefa.titulo === titulo)
+    }
+
+}

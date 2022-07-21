@@ -1,4 +1,4 @@
-// criando uma "tabela" usuaro
+// criando uma "tabela" usuario
 const usuario = []
 
 // criando uma "tabela" tarefa
