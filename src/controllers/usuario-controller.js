@@ -62,6 +62,21 @@ const usuarioController = (app) => {
 
     })
 
+    app.delete('/usuario/email/:email', (req,res) => {
+        const email = req.params.email
+        modelUsuario.deletaUsuario(email)
+        res.json({"msg": "Usuario deletado"})
+    });
+
+    app.put('/usuario/email/:email', (req, res)=> {
+        const body = req.body
+        const email = req.params.email
+
+        modelUsuario.atualizaUsuario(email, body)
+
+        res.json({"msg": "Usuario atualizado"})
+    })
+
 }
 
 export default usuarioController

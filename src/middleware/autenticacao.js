@@ -1,4 +1,4 @@
-const autenticacao = (app) => {
+/*const autenticacao = (app) => {
     // Middleware que checa um atributo do header o cliente envia (usertype)
     // para saber se ele tem permissão para o acesso de determinados metodos
 
@@ -18,4 +18,4 @@ const autenticacao = (app) => {
 
 }
 
-export default autenticacao
+export default autenticacao*/

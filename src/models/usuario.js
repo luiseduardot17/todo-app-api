@@ -17,4 +17,11 @@ export default class UsuarioModel {
         return bd.usuario.filter(usuario => usuario.email === email)
     }
 
+    deletaUsuario = (email) => {
+        bd.usuario.splice(usuario => usuario.email === email)
+    }
+
+    atualizaUsuario = (email, novosDadosDoUsuario) => {
+        
+    }
 }
