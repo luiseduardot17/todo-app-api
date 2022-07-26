@@ -3,7 +3,8 @@
     "start": "nodemon ./src/todo-app-api.js"
   },
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "sqlite3": "^5.0.10"
   },
   "type": "module",
   "devDependencies": {
