@@ -1,22 +1,38 @@
 import UsuarioModel from "../models/usuario.js"
 import ValidaUsuario from "../services/validacaoUsuario.js"
+import db from "../database/db-sqlite.js"
 
 const usuarioController = (app) => {
     // cria uma instancia do classe model usuario que sera usada para todas rotas
     const modelUsuario = new UsuarioModel()
 
     app.get('/usuario', (req, res) => {
-
-        const todosUsuarios = modelUsuario.pegaUsuarios()
-
-        // responde a requisição usando o metodo para pegar todos usuarios
-        res.json(
-            {
-                "usuarios": todosUsuarios,
-                "erro": false
+        db.all('SELECT * FROM USUARIOS', (erro, linhas) => {
+            if (erro) {
+                res.json({
+                    "mensagem": erro.message,
+                    "erro": true
+                })
+            } else {
+                res.json({
+                    "usuarios": linhas,
+                    "erro": false
+                })
             }
-        )
+        })
     })
+
+    app.get('/usuario', async (req, res) => {
+        try {
+            const todosUsuarios = await modelUsuario.pegaUsuarios()
+            //responde a requisição usando o metodo para pegar todos usuarios
+            res.json(todosUsuarios)
+
+        } catch (error) {
+            res.json(error)
+        }
+    })
+
 
     // Rota para pegar um dado especifico baseado no parametro enviado
     app.get('/usuario/email/:email', (req, res) => {
@@ -62,19 +78,37 @@ const usuarioController = (app) => {
 
     })
 
-    app.delete('/usuario/email/:email', (req,res) => {
+    app.post('/usuario', (req, res) => {
+        const body = req.body
+        db.run(`INSERT INTO USUARIOS (NOME, EMAIL, SENHA)
+        VALUES (?, ?, ?)`, body.nome, body.email, body.senha,
+            (erro) => {
+                if (erro) {
+                    res.json({
+                        "mensagem": erro.message,
+                        "erro": true
+                    })
+                } else {
+                    res.json({
+                        "erro": false
+                    })
+                }
+            })
+    })
+
+    app.delete('/usuario/email/:email', (req, res) => {
         const email = req.params.email
         modelUsuario.deletaUsuario(email)
-        res.json({"msg": "Usuario deletado"})
+        res.json({ "msg": "Usuario deletado" })
     });
 
-    app.put('/usuario/email/:email', (req, res)=> {
+    app.put('/usuario/email/:email', (req, res) => {
         const body = req.body
         const email = req.params.email
 
         modelUsuario.atualizaUsuario(email, body)
 
-        res.json({"msg": "Usuario atualizado"})
+        res.json({ "msg": "Usuario atualizado" })
     })
 
 }

@@ -1,3 +1,4 @@
+import usuarioDao from '../DAO/usuarios-dao.js'
 import bd from '../database/bd.js'
 
 export default class UsuarioModel {
@@ -8,8 +9,8 @@ export default class UsuarioModel {
     }
 
     // metodo para pegar todos usuarios do banco de dados
-    pegaUsuarios = () => {
-        return bd.usuario
+    pegaUsuarios = async () => {
+        return await usuarioDao.pegaTodosUsuarios()
     }
 
     pegaUmUsuario = (email) => {
