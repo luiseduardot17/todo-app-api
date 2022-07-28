@@ -97,9 +97,16 @@ const usuarioController = (app) => {
     })
 
     app.delete('/usuario/email/:email', (req, res) => {
-        const email = req.params.email
-        modelUsuario.deletaUsuario(email)
-        res.json({ "msg": "Usuario deletado" })
+        try {
+            const email = req.params.email
+            const resposta = modelUsuario.deletaUsuario(email)
+
+            res.json(resposta)
+
+        } catch (error) {
+            res.json(error)
+        }
+
     });
 
     app.put('/usuario/email/:email', (req, res) => {

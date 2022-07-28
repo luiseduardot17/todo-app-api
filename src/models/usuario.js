@@ -18,8 +18,8 @@ export default class UsuarioModel {
         return bd.usuario.filter(usuario => usuario.email === email)
     }
 
-    deletaUsuario = (email) => {
-        bd.usuario.splice(usuario => usuario.email === email)
+    deletaUsuario = async (email) => {
+        return await usuarioDao.deletaUsuario(email)  //retorna a promise do usuarios-dao.js
     }
 
     atualizaUsuario = (email, novosDadosDoUsuario) => {

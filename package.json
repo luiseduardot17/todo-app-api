@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "start": "nodemon ./src/todo-app-api.js"
   },
   "dependencies": {
@@ -8,6 +9,7 @@
   },
   "type": "module",
   "devDependencies": {
+    "jest": "^28.1.3",
     "nodemon": "^2.0.19"
   }
 }
