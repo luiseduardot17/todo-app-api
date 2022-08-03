@@ -1,6 +1,7 @@
-import express from 'express'
 import cors from 'cors'
 import controllerTarefa from './controllers/tarefa-controller.js'
+import 'dotenv/config'
+import express from 'express'
 import usuarioController from './controllers/usuario-controller.js'
 /*import autenticacao from './middleware/autenticacao.js'*/
 
